@@ -1,0 +1,63 @@
+
+entity Category {
+	id Long,
+    description String,
+    name String
+}
+
+entity Customers {
+	id Long,
+    phoneNumber String,
+    address String,
+    email String,
+    name String
+}
+
+entity Orders {
+	id Long,
+    deliveredDate LocalDate,
+    note String,
+    orderDate LocalDate,
+    orderStatus String,
+    totalPrice BigDecimal,
+    customerId Long
+}
+
+entity OrderDetails {
+	id Long,
+    color String,
+	price BigDecimal,
+    quantity Integer,
+    size String,
+    unitPrice BigDecimal,
+    orderId Long,
+    productId Long
+}
+
+entity Products {
+	id Long,
+    description String,
+    name String,
+    price BigDecimal,
+    status String,
+    categoryId Long
+}
+
+enum Language {
+	ENGLISH
+}
+
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate Category, Customers, Orders, OrderDetails, Products with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
